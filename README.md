@@ -1,9 +1,15 @@
+### NAME:NIVETHA.A
+
+### REG NO:212222230101
+
 # EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER
 
 ### Aim:
+
 To generate a PWM wave at the timer pin output and  simuate it on  proteus using an virtual oscilloscope  
 
 ### Components required:
+
 STM32 CUBE IDE, Proteus 8 simulator .
 
 ### Theory:
@@ -46,90 +52,80 @@ In normal settings, assuming you’re using the timer module in PWM mode and gen
 
 ## Procedure:
 Step1: Open CubeMX & Create New Project
- ![image](https://user-images.githubusercontent.com/36288975/226189166-ac10578c-c059-40e7-8b80-9f84f64bf088.png)
-
 
 Step2: Choose The Target MCU & Double-Click Its Name select the target to be programmed  as shown below and click on next 
 
- ![image](https://user-images.githubusercontent.com/36288975/226189215-2d13ebfb-507f-44fc-b772-02232e97c0e3.png)
-![image](https://user-images.githubusercontent.com/36288975/226189230-bf2d90dd-9695-4aaf-b2a6-6d66454e81fc.png)
-
-![image](https://user-images.githubusercontent.com/36288975/226189280-ed5dcf1d-dd8d-43ae-815d-491085f4863b.png)
-
 Step3: Configure Timer2 Peripheral To Operate In PWM Mode With CH1 Output
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/682c851a-7dfe-4089-8395-f76088d43896)
-
 
 Step4: Set The RCC External Clock Source
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/8888af3b-63e2-4760-a51b-17b477763941)
-
-
 STM32 RCC External Clock Selection CubeMX
 
 Step5: Go To The Clock Configuration
 
 Step6: Set The System Clock To Be 72MHz
-![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/4ea03faa-fb90-4b31-8079-3db5f959f2c3)
-
 
 Step7: Name & Generate The Project Initialization Code For CubeIDE or The IDE You’re Using
-
-
 
 Step8.  Creating Proteus project and running the simulation
 We are now at the last part of step by step guide on how to simulate STM32 project in Proteus.
 
-Step9. Create a new Proteus project and place STM32F40xx i.e. the same MCU for which the project was created in STM32Cube IDE. 
-14. After creation of the circuit as per requirement as shown below 
-
- ![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/4f377f5e-bdda-489e-a416-c712c893831d)
+Step9. Create a new Proteus project and place STM32F40xx i.e. the same MCU for which the project was created in STM32Cube IDE.
 
 Step10. Double click on the the MCU part to open settings. Next to the Program File option, give full path to the Hex file generated using STM32Cube IDE. Then set the external crystal frequency to 8M (i.e. 8 MHz). Click OK to save the changes.
-
  
-Step14. click on debug and simulate using simulation as shown below 
- ![image](https://github.com/vasanthkumarch/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/36288975/b8efbfc2-f0c5-4106-8117-3a6e7ac87f6c)
-
-
+Step11. click on debug and simulate using simulation as shown below 
  
-
-  
-
 ## STM 32 CUBE PROGRAM :
-
-
-
-
+```
+HAL_TIM_Base_Start(&htim2);
+HAL_TIM_PWM_Init(&htim2);
+HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1);
+```
 
 ## Output screen shots of proteus  :
- 
+ ![327074013-32210120-96c0-4973-82bf-e2e672a4c889](https://github.com/nivetharajaa/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/120543388/3a8c388a-49f9-4da6-9bc5-c8da5d120888)
+
  
  ## CIRCUIT DIAGRAM (EXPORT THE GRAPHICS TO PDF AND ADD THE SCREEN SHOT HERE): 
- 
+ ![327074024-ca50af39-d3f7-4580-b098-8ad0b46e2f8f](https://github.com/nivetharajaa/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/120543388/4b623efc-8b7a-4a3b-992b-d9cf076f98e2)
+
 
 ## DUTY CYCLE AND FREQUENCY CALCULATION 
 FOR PULSE AT 500
+![327074206-5a9c4db9-6a1c-4a4d-b7f5-1c797cc2aaf0](https://github.com/nivetharajaa/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/120543388/84ef7dfd-9b0d-4170-845e-d01274bcc62c)
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+TON = 0.34 ms
+
+TOFF=0.34 ms
+
+TOTAL TIME =  TON +TOFF = 0.64 ms
+
+FREQUENCY = 1/(TOTAL TIME)= 1/0.64 = 1562.5 Hertz.
 
 FOR PULSE AT 700
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+![327074190-8e7a905d-34c1-408a-8222-6577b4e19d91](https://github.com/nivetharajaa/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/120543388/77f6f421-f278-4d91-8130-da4b057b0c33)
+
+TON =0.85 ms
+
+TOFF= 0.34 ms
+
+TOTAL TIME = TON +TOFF = 0.85+0.34 = 1.18 ms
+
+FREQUENCY = 1/(TOTAL TIME) = 1/1.18 = 847.45 Hertz 
 
 
 FOR PULSE AT 900
 
-TON = 
-TOFF=
-TOTAL TIME = 
-FREQUENCY = 1/(TOTAL TIME)
+![327074220-e8776909-f995-4830-9c26-b044fdce5545](https://github.com/nivetharajaa/EXPERIMENT--07-SQUARE-WAVE-GENERATION-AT-THE-OUTPUT-PIN-USING-TIMER/assets/120543388/80cbb843-be27-4814-8b3c-8bdcfb0cccdc)
 
+TON = 1.08 ms
+
+TOFF=0.12 ms
+
+TOTAL TIME = TON + TOFF = 1.08+0.12 = 1.2 ms
+
+FREQUENCY = 1/(TOTAL TIME) = 1/1.2 = 833.33 Hertz
 
 ## Result :
 A PWM Signal is generated using the following frequency and various duty cycles are simulated 
